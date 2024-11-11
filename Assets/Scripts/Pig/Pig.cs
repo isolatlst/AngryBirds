@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -10,13 +11,25 @@ public class Pig : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnDestroy()
     {
-        Debug.Log(collision);
+        //Перенести столкновение в птиц
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
         Debug.Log(collision.relativeVelocity);
-        if (collision.relativeVelocity.magnitude > 1.5f)
+        if (collision.relativeVelocity.magnitude > 3f)
         {
             Destroy(gameObject);
         }
     }
 }
+// private void OnCollisionEnter2D(Collision2D other)
+// {
+//     if (other.gameObject.TryGetComponent<Pig>(out var pig))
+//     {
+//         OnBirdCollision?.Invoke(pig, other.relativeVelocity.magnitude);
+//     }
+// }

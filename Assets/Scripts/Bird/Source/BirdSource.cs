@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bird.Source
 {
-    public class BirdSource : MonoBehaviour
+    public class BirdSource : MonoBehaviour // fixme
     {
-        
         [SerializeField] private AbstractBird[] _birdsArr;
         private int counter = 0;
         // private Queue<AbstractBird> _birds;
@@ -23,6 +21,7 @@ namespace Bird.Source
             if (counter == _birdsArr.Length)
             {
                 throw new IndexOutOfRangeException("Bird array is empty");
+                return null;
             }
             // var bird = _birds.Dequeue();
             var bird = _birdsArr[counter];            

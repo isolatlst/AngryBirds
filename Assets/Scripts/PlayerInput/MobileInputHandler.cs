@@ -25,6 +25,7 @@ namespace PlayerInput
             if (_touch.phase == TouchPhase.Began)
             {
                 startPosition = currentPosition;
+                _isTouchWasEnded = false;
             }
 
             if (_touch.phase == TouchPhase.Moved)
@@ -43,7 +44,7 @@ namespace PlayerInput
         {
             if (_isTouchWasEnded)
             {
-                if (_touch.phase is TouchPhase.Began or TouchPhase.Stationary)
+                if (_touch.phase is TouchPhase.Stationary)
                 {
                     skillWasActivated?.Invoke();
                 }

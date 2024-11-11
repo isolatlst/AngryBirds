@@ -25,8 +25,10 @@ namespace Slingshot
             {   
                 _wasShooted = false;
                 _bird = _birdSource.GetBird();
+                // _playerInput.SkillWasActivated += _bird.Skill;
                 yield return SeatBird(_bird);
                 yield return WaitShot();
+                // _playerInput.SkillWasActivated -= _bird.Skill;
             }
         }
 

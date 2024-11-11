@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Bird.Source
 {
     [Serializable]
-    public class BirdTransfer
+    public class BirdTransfer // TODO добавить статус: в рогатку/перекат на некст позицию
     {
         [SerializeField] private float _duration;
         [SerializeField] private float _jumpPower;
