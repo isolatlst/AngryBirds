@@ -1,11 +1,13 @@
-﻿namespace Bird.Birds
+﻿using UnityEngine;
+
+namespace Bird.Birds
 {
-    public class YellowBird : BaseBird
+    public class YellowBird : AbstractBaseBird
     {
-        public override void Skill()
+        public override void Skill() 
         {
             base.Skill();
-            base.Launch(Rigidbody.velocity * 2f);
+            Launch(Rigidbody.velocity * 1.5f);
         }
     }
 }

@@ -6,29 +6,25 @@ namespace PlayerInput
 {
     public class PCInputHandler : IInputHandler
     {
+        private Vector3 _startPosition;
+        private Vector3 _currentPosition;
+        
         public void InputHandler(
             in Camera camera,
-            ref Vector3 startPosition,
-            ref Vector3 currentPosition,
-            in AbstractSlingshot slingshot,
-            Action released)
+            Action released,
+            Action<Vector2> cursorMoved)
         {
-            currentPosition = camera.ScreenToWorldPoint(Input.mousePosition);
+            
+            _currentPosition = camera.ScreenToWorldPoint(Input.mousePosition);
 
             if (Input.GetMouseButtonDown(0))
-            {
-                startPosition = currentPosition;
-            }
+                _startPosition = _currentPosition;
 
             if (Input.GetMouseButton(0))
-            {
-                slingshot.ChangeTension(startPosition, currentPosition);
-            }
+                cursorMoved?.Invoke(_startPosition - _currentPosition);
 
             if (Input.GetMouseButtonUp(0))
-            {
                 released?.Invoke();
-            }
         }
 
         public void ActivateSkill(Action skillWasActivated)

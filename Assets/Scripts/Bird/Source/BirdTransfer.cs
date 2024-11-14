@@ -11,9 +11,9 @@ namespace Bird.Source
         [SerializeField] private float _duration;
         [SerializeField] private float _jumpPower;
 
-        public IEnumerator Transfer(AbstractBird bird, Vector3 targetPosition)
+        public IEnumerator Transfer(AbstractBaseBird bird, Vector3 targetPosition)
         {
-             yield return bird.transform.DOJump(targetPosition, _jumpPower, default, _duration).WaitForCompletion();
+             yield return bird.transform.DOJump(targetPosition, _jumpPower, default, _duration)?.WaitForCompletion()!;
         }
     }
 }

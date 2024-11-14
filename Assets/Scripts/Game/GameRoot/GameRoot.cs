@@ -44,7 +44,7 @@ namespace EntryPoint
                 return;
             }
 
-            if (sceneName != Scenes.BOOT)
+            if (sceneName != Scenes.BOOTSTRAP)
             {
                 return;
             }
@@ -57,7 +57,7 @@ namespace EntryPoint
         {
             // _uiRoot.ShowLoadingScreen();
             
-            // yield return LoadScene(Scenes.BOOT);
+            // yield return LoadScene(Scenes.BOOTSTRAP);
             yield return LoadScene(Scenes.GAMEPLAY);
 
             

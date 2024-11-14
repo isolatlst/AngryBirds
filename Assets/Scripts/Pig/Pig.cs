@@ -1,35 +1,26 @@
-using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Pig : MonoBehaviour
 {
-    private Rigidbody2D _rigidbody;
+    [Header("Debug")] [SerializeField] private bool _isUndying;
+    [SerializeField] private ParticleSystem _explosionTemplate;
 
-    private void Awake()
+    
+    private IEnumerator Dead()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-    }
-
-    private void OnDestroy()
-    {
-        //Перенести столкновение в птиц
+        var explosion = Instantiate(_explosionTemplate, transform);
+        yield return new WaitForSeconds(0.25f);
+        Destroy(gameObject);
+        Destroy(explosion);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.name);
-        Debug.Log(collision.relativeVelocity);
-        if (collision.relativeVelocity.magnitude > 3f)
+        if (collision.relativeVelocity.magnitude > 3f && !_isUndying)
         {
-            Destroy(gameObject);
+            StartCoroutine(Dead());
         }
     }
 }
-// private void OnCollisionEnter2D(Collision2D other)
-// {
-//     if (other.gameObject.TryGetComponent<Pig>(out var pig))
-//     {
-//         OnBirdCollision?.Invoke(pig, other.relativeVelocity.magnitude);
-//     }
-// }

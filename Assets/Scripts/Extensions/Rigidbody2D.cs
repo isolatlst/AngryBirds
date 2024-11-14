@@ -11,7 +11,7 @@ namespace Extensions
             
             rigidbody.isKinematic = true;
             col.radius = radius * explosionForce;
-            await Task.Delay(100);
+            await Task.Delay(400);
            
             col.radius = radius;
             rigidbody.isKinematic = false;

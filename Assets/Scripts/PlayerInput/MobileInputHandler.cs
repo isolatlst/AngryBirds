@@ -6,49 +6,35 @@ namespace PlayerInput
 {
     public class MobileInputHandler : IInputHandler
     {
+        private Vector3 _startPosition;
+        private Vector3 _currentPosition;
         private Touch _touch;
-        private bool _isTouchWasEnded = false;
 
         public void InputHandler(
             in Camera camera,
-            ref Vector3 startPosition,
-            ref Vector3 currentPosition,
-            in AbstractSlingshot slingshot, 
-            Action released)
+            Action released,
+            Action<Vector2> cursorMoved)
         {
             if (Input.touchCount <= 0)
                 return;
 
             _touch = Input.GetTouch(0);
-            currentPosition = camera.ScreenToWorldPoint(_touch.position);
+            _currentPosition = camera.ScreenToWorldPoint(_touch.position);
 
             if (_touch.phase == TouchPhase.Began)
-            {
-                startPosition = currentPosition;
-                _isTouchWasEnded = false;
-            }
+                _startPosition = _currentPosition;
 
             if (_touch.phase == TouchPhase.Moved)
-            {
-                slingshot.ChangeTension(startPosition, currentPosition);
-            }
+                cursorMoved?.Invoke(_startPosition - _currentPosition);
 
             if (_touch.phase == TouchPhase.Ended)
-            {
-                _isTouchWasEnded = true;
                 released?.Invoke();
-            }
         }
 
         public void ActivateSkill(Action skillWasActivated)
         {
-            if (_isTouchWasEnded)
-            {
-                if (_touch.phase is TouchPhase.Stationary)
-                {
-                    skillWasActivated?.Invoke();
-                }
-            }
+            if (_touch.phase is TouchPhase.Stationary)
+                skillWasActivated?.Invoke();
         }
     }
 }

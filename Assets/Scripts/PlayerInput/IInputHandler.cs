@@ -8,10 +8,8 @@ namespace PlayerInput
     {
         public void InputHandler(
             in Camera camera, 
-            ref Vector3 startPosition, 
-            ref Vector3 currentPosition, 
-            in AbstractSlingshot slingshot,
-            Action released);
+            Action released,
+            Action<Vector2> cursorMoved);
 
         public void ActivateSkill(Action skillWasActivated);
     }

@@ -3,15 +3,19 @@ using UnityEngine;
 
 namespace Bird.Birds
 {
-    public class BlackBird : BaseBird
+    public class BlackBird : AbstractBaseBird
     {
         [SerializeField] private CircleCollider2D col;
-        private float _explosionForce = 3f;
-
+        [SerializeField] private ParticleSystem _explosionTemplate;
+        private const float ExplosionForce = 3f;
+        
+        
         public override void Skill()
         {
             base.Skill();
-            Rigidbody.AddExplosionForce(col, _explosionForce); //TODO подкрутить анимацию взрыва
+            var explosion = Instantiate(_explosionTemplate, transform);
+            Rigidbody.AddExplosionForce(col, ExplosionForce); 
+            Destroy(explosion);
         }
     }
 }

@@ -137,3 +137,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   col: {fileID: 365795637}
+  _explosionTemplate: {fileID: 5405277581672941268, guid: f30745bae4a71f241aa8e63cb3b9e694, type: 3}

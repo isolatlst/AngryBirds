@@ -1,7 +1,9 @@
 ﻿namespace Bird.Birds
 {
-    public class RedBird : BaseBird
+    public class RedBird : AbstractBaseBird
     {
-        
+        public override void Skill()
+        {
+        }
     }
 }
