@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using Bird;
-using Bird.Source;
+using Slingshot;
 using UnityEngine;
 
-namespace Slingshot
+namespace Bird.Source
 {
     public class BirdQueue : MonoBehaviour
     {
@@ -22,7 +21,6 @@ namespace Slingshot
                 var bird = _birdSource.GetBird();
                 bird.InitPlayerInput(_playerInput);
                 yield return SeatBird(bird);
-                _shotpoint.SetBird(bird);
                 yield return WaitShot();
             }
         }
@@ -30,6 +28,7 @@ namespace Slingshot
         private IEnumerator SeatBird(AbstractBaseBird bird)
         {
             yield return _birdTransfer.Transfer(bird, _shotpoint.transform.position);
+            _shotpoint.SetBird(bird);
         }
 
         private IEnumerator WaitShot()

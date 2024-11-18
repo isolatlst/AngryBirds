@@ -4,10 +4,10 @@ namespace Bird.Birds
 {
     public class YellowBird : AbstractBaseBird
     {
-        public override void Skill() 
+        protected override void Skill() 
         {
             base.Skill();
-            Launch(Rigidbody.velocity * 1.5f);
+            Launch(Rigidbody.velocity * 1.25f);
         }
     }
 }

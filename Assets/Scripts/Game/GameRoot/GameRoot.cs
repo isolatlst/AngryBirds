@@ -17,6 +17,7 @@ namespace EntryPoint
             //Системные настройки
             Application.targetFrameRate = 60;
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
+            Screen.orientation  = ScreenOrientation.LandscapeLeft;
 
             _instance = new GameEntryPoint();
             _instance.RunGame();

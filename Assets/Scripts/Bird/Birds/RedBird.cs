@@ -2,7 +2,7 @@
 {
     public class RedBird : AbstractBaseBird
     {
-        public override void Skill()
+        protected override void Skill()
         {
         }
     }

@@ -10,10 +10,9 @@ public class Pig : MonoBehaviour
     
     private IEnumerator Dead()
     {
-        var explosion = Instantiate(_explosionTemplate, transform);
+        Instantiate(_explosionTemplate, transform);
         yield return new WaitForSeconds(0.25f);
         Destroy(gameObject);
-        Destroy(explosion);
     }
 
     void OnCollisionEnter2D(Collision2D collision)

@@ -33,7 +33,7 @@ namespace Bird
             Rigidbody.AddForce(force, ForceMode2D.Impulse);
         }
 
-        public virtual void Skill()
+        protected virtual void Skill()
         {
             if(_isSkillBeenUsed || Rigidbody.velocity.magnitude <= 0f)
                 return;
